@@ -10,22 +10,46 @@
 //      $env:GH_TOKEN = 'github_pat_xxx'          # 只需要 Contents: Read/Write
 //      node tools/push-to-github.mjs -m "改了啥"
 //
+//  token 也可以放在 <仓库上一级>/.secrets/gh-token.txt（本机私有，别提交），
+//  没设环境变量时脚本会自动去读那里。
+//
 //  行为：
 //    · 只上传有变化的文件（按 git blob sha1 比对，没变的不重传）
 //    · 用 base_tree 增量提交，一次提交生成一个 commit
 //    · 空仓库也能用（第一次会自动建初始 commit）
 // ============================================================================
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { createHash } from 'node:crypto';
-import { fileURLToPath } from 'node:url';
 
 const ROOT = process.cwd();
-const TOKEN = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
-if (!TOKEN) {
-  console.error('[x] 先设置环境变量 GH_TOKEN（fine-grained PAT，需要 Contents 读写权限）');
+
+// ---- token：环境变量优先，其次读本机凭据文件（不要把它提交进仓库）----------
+function resolveToken() {
+  const direct = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
+  if (direct && direct.trim()) return { token: direct.trim(), from: '环境变量 GH_TOKEN' };
+  const candidates = [
+    process.env.GH_TOKEN_FILE,
+    join(ROOT, '..', '.secrets', 'gh-token.txt'), // 仓库上一级的私有目录
+    join(ROOT, '.gh-token'),
+  ].filter(Boolean);
+  for (const p of candidates) {
+    try {
+      if (existsSync(p)) {
+        const v = readFileSync(p, 'utf8').trim();
+        if (v) return { token: v, from: p };
+      }
+    } catch { /* 读不到就试下一个 */ }
+  }
+  return null;
+}
+
+const auth = resolveToken();
+if (!auth) {
+  console.error('[x] 找不到 token：设置环境变量 GH_TOKEN，或把 token 放到 <仓库上一级>/.secrets/gh-token.txt');
   process.exit(1);
 }
+const TOKEN = auth.token;
 
 // ---- 仓库坐标：默认从 package.json 的 repository 解析 ----------------------
 let OWNER = process.env.GH_OWNER || 'knxi';

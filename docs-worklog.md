@@ -6,7 +6,7 @@
 ## 任务状态总览
 
 - [x] 基线核实：§6.0 本地修补 8 项已在源码（submissionRegion 09-marks.js:290；41-generate.js:62；12-canvas-tab.js:223）；tools 齐（check-canvas-regressions.mjs / check-canvas-browser.mjs / check-preflight.mjs）
-- [x] 基线检查全绿：build 31 零件 361986 字符、--check、check-deps、node --check ×2、check-preflight exit=0、check-canvas-regressions 8 项 exit=0、check-canvas-browser 四视口全过（Playwright 在 C:\Users\su\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright，浏览器 Edge）
+- [x] 基线检查全绿：build 31 零件 361986 字符、--check、check-deps、node --check ×2、check-preflight exit=0、check-canvas-regressions 8 项 exit=0、check-canvas-browser 四视口全过（Playwright 在 C:\Users\<用户名>\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright，浏览器 Edge）
 - [x] UI 入口审计 3/3 完成 → `docs-ui-audit.md`
 - [x] A 存储方案设计稿 → `docs-history-design.md`
 - [ ] D 布局骨架（信息架构重构）
@@ -29,7 +29,7 @@
 
 - 装配：cd E:\ds-h\_dl\publish\dsh-grsai-canvas && node tools/build-client.mjs（--check 校验；client.js 是产物勿手改）
 - 检查：node tools/check-deps.mjs；node --check lib/client.js；node --check lib/index.js；node tools/check-preflight.mjs；node tools/check-canvas-regressions.mjs
-- 浏览器回归：$env:PLAYWRIGHT_MODULE='C:\Users\su\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright'；$env:CANVAS_BROWSER='C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'；node tools/check-canvas-browser.mjs（四视口 1200x900/390x700/360x640/640x420，截图写 browser-check/）
+- 浏览器回归：$env:PLAYWRIGHT_MODULE='C:\Users\<用户名>\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright'；$env:CANVAS_BROWSER='C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'；node tools/check-canvas-browser.mjs（四视口 1200x900/390x700/360x640/640x420，截图写 browser-check/）
 - 宿主改 lib/index.js 必须重启 DSH（重启DSH.cmd / DSH.exe --restart）；客户端装配+刷新即生效
 - 零件机制：definePart/rt/deps（deps Proxy 缺依赖访问即抛"零件 X 缺依赖:Y"）；新 useState 同步 06-utils.js STATE_ORDER（75 项）
 - /ws-save：POST {path,dataUrl}，仅 image/* 或 .json，mkdir recursive 支持子目录；/ws-file 仅读图片；/ws-list 仅列图片 → A 方案需新增 GET /history-manifest 读 画布/history/index.json + FEATURES 加 'history' 能力位

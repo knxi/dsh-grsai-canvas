@@ -11,7 +11,7 @@
 ### 1. eval 告警:不是插件
 
 - 插件运行时代码零 `eval` / `new Function`:`grep` 于 `E:\ds-h\_dl\publish\dsh-grsai-canvas\lib` 零命中;唯一的 `new Function` 出现在 `tools/` 的 Node 测试脚手架(`ui-snapshot.mjs:36`、`shot-final.mjs:50`、`check-preflight.mjs:22`、`check-canvas-browser.mjs:50`、`check-compare-browser.mjs:56`、`check-layers-browser.mjs:59`、`check-a11y-browser.mjs`),只在 Node 里加载源码用,不进浏览器。
-- DSH 前端主 bundle 有一处**条件触发**的 eval:`C:\Users\su\AppData\Roaming\npm\node_modules\@deepseek-ai\dsh\node_modules\@deepseek-ai\dsh-web-frontend\dist\assets\index-5SrrfWpU.js` 中
+- DSH 前端主 bundle 有一处**条件触发**的 eval:`C:\Users\<用户名>\AppData\Roaming\npm\node_modules\@deepseek-ai\dsh\node_modules\@deepseek-ai\dsh-web-frontend\dist\assets\index-5SrrfWpU.js` 中
   `const L4 = new Function("ctx","expr",\`\n with (ctx) {\n return eval(expr)\n }\n\`);`
   配合 `Xa(e,n){ return Ec(n) ? L4(e, n.__jsExpr) : ... }` 与 `Ec(e){ return e instanceof Object && "__jsExpr" in e }` —— 这是**配置表达式求值器**,只有值带 `__jsExpr` 标记才走 eval。
 - 页面侧无 CSP 头:`dist/index.html` 无 CSP meta;`curl -s -D - http://127.0.0.1:3080/` 返回 401(未认证拿不到头)。宿主里唯一一段 `default-src 'none'; script-src 'none'; ...` 属于 `dsh-client-ui-sidebar-documentpreview\lib\client.js`(文档预览 iframe 的沙箱策略,故意锁脚本),与画布无关。

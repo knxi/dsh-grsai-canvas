@@ -70,14 +70,14 @@
 
 用户反馈「工具栏工具用不了」后排查发现:**开发目录的成果一直没被安装**。
 
-- 运行中的宿主:`E:\nodejs\node.exe …@deepseek-ai\dsh\lib\bin.js web --port 3080 --no-open`(PID 28788),加载的是 `C:\Users\su\.dsh\profiles\node_modules\dsh-grsai-canvas`(旧版 0.20.0,31 个 parts,无 34/35/36/37/38/44 六个新零件,仍有 30-text-input.js)。
+- 运行中的宿主:`E:\nodejs\node.exe …@deepseek-ai\dsh\lib\bin.js web --port 3080 --no-open`(PID 28788),加载的是 `C:\Users\<用户名>\.dsh\profiles\node_modules\dsh-grsai-canvas`(旧版 0.20.0,31 个 parts,无 34/35/36/37/38/44 六个新零件,仍有 30-text-input.js)。
 - 证据:`lib\index.js` 无 `/history` 路由,`GET /grsai-canvas/history → 404`;`client.js` 里 `grsai-prompt = 0 / layersPanel = 0 / renderDock = 0`。
 - 开发目录反证:`grace` 无,`lib\index.js` 有 `/history`(3 处),`client.js` 里 `grsai-prompt = 1 / layersPanel = 6 / renderDock = 3 / renderViewbar = 3 / renderPropsCard = 3 / renderCompareView = 3`。
 
 ### 10.2 安装动作与结果
 
-- 先备份:`C:\Users\su\.dsh\profiles\dsh-grsai-canvas.bak-20261011-145755`(110 个文件)。
-- 执行 `deploy\install.ps1 -Source E:\ds-h\_dl\publish\dsh-grsai-canvas` → 复制到 `C:\Users\su\.dsh\profiles\node_modules\dsh-grsai-canvas`(36 个 parts),`dsh.profile.bundles` 已含该包(未改动),image-layering 技能更新到 v2.0.1(旧技能备份在 `C:\Users\su\.dsh\skills\.backup\image-layering-20261011-145805`)。
+- 先备份:`C:\Users\<用户名>\.dsh\profiles\dsh-grsai-canvas.bak-20261011-145755`(110 个文件)。
+- 执行 `deploy\install.ps1 -Source E:\ds-h\_dl\publish\dsh-grsai-canvas` → 复制到 `C:\Users\<用户名>\.dsh\profiles\node_modules\dsh-grsai-canvas`(36 个 parts),`dsh.profile.bundles` 已含该包(未改动),image-layering 技能更新到 v2.0.1(旧技能备份在 `C:\Users\<用户名>\.dsh\skills\.backup\image-layering-20261011-145805`)。
 - 安装后校验:六个新零件就位;`client.js` 六个标记齐全;`index.js` `/history` = 3 处。
 - **需要重启 DSH**(新路由与能力位要重启才生效)。重启前 `/grsai-canvas/history` 仍是 404、`/ping` 200。
 

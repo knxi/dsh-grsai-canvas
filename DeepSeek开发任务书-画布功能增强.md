@@ -361,7 +361,7 @@ node tools/check-canvas-regressions.mjs
 浏览器回归使用本机已存在的模块和浏览器，路径不存在就如实说明，不直接安装：
 
 ```powershell
-$env:PLAYWRIGHT_MODULE = "C:\Users\su\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright"
+$env:PLAYWRIGHT_MODULE = "C:\Users\<用户名>\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright"
 $env:CANVAS_BROWSER = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 node tools/check-canvas-browser.mjs
 ```

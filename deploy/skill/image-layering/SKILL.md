@@ -197,32 +197,32 @@ Scripts must unwrap data and treat both completed and success statuses as succes
 PSD-only branch:
 
 ```bash
-python C:/Users/flux/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --prompt "Separate the image into IP text, logo, and central title text." --size 2K --output-dir "C:/Users/flux/Downloads/image-layering-output" --no-svg --no-ai
+python C:\Users\<用户名>/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --prompt "Separate the image into IP text, logo, and central title text." --size 2K --output-dir "C:\Users\<用户名>/Downloads/image-layering-output" --no-svg --no-ai
 ```
 
 PSD + AI branch, first PSD review pass:
 
 ```bash
-python C:/Users/flux/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --prompt "Split this poster into clean semantic layers." --target-layers 4 --size 2K --output-dir "C:/Users/flux/Downloads/image-layering-output"
+python C:\Users\<用户名>/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --prompt "Split this poster into clean semantic layers." --target-layers 4 --size 2K --output-dir "C:\Users\<用户名>/Downloads/image-layering-output"
 ```
 
 After the user confirms the PSD:
 
 ```bash
-python C:/Users/flux/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --task-id "task_xxx" --psd-approved --vector-backend recraft --output-dir "C:/Users/flux/Downloads/image-layering-output"
+python C:\Users\<用户名>/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --task-id "task_xxx" --psd-approved --vector-backend recraft --output-dir "C:\Users\<用户名>/Downloads/image-layering-output"
 ```
 
 Recraft SVG + AI resume branch (only after PSD approval):
 
 ```powershell
 $env:RECRAFT_API_TOKEN = "<token-from-Recraft>"
-python C:/Users/flux/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --task-id "task_xxx" --psd-approved --vector-backend recraft --output-dir "C:/Users/flux/Downloads/image-layering-output"
+python C:\Users\<用户名>/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --task-id "task_xxx" --psd-approved --vector-backend recraft --output-dir "C:\Users\<用户名>/Downloads/image-layering-output"
 ```
 
 Auto split after the branch question has been answered:
 
 ```bash
-python C:/Users/flux/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --size 1.5K --output-dir "C:/Users/flux/Downloads/image-layering-output"
+python C:\Users\<用户名>/.codex/skills/image-layering/scripts/split_image.py "C:/path/to/image.png" --size 1.5K --output-dir "C:\Users\<用户名>/Downloads/image-layering-output"
 ```
 
 When the branch is not explicit, ask once before running the API: "要一份纯 PSD 文件,还是 PSD + AI 两个都要出?" If the second option is selected, use the PSD quality gate before Recraft.
@@ -240,10 +240,10 @@ The normal AI output is Recraft-only. There is no local vector fallback.
 
 ```bash
 # PSD + AI/SVG after explicit PSD approval
-python C:/Users/flux/.codex/skills/image-layering/scripts/split_image.py --task-id "task_xxx" --psd-approved --vector-backend recraft
+python C:\Users\<用户名>/.codex/skills/image-layering/scripts/split_image.py --task-id "task_xxx" --psd-approved --vector-backend recraft
 
 # PSD only, no vector request
-python C:/Users/flux/.codex/skills/image-layering/scripts/split_image.py --task-id "task_xxx" --no-svg --no-ai
+python C:\Users\<用户名>/.codex/skills/image-layering/scripts/split_image.py --task-id "task_xxx" --no-svg --no-ai
 ```
 
 Required Python packages for full output: `pillow`, `psd-tools`, `opencv-python`, `numpy`, `svglib`, `reportlab`. Recraft credentials are required for the AI branch.
