@@ -1,0 +1,63 @@
+{
+  "name": "dsh-grsai-canvas",
+  "version": "0.27.3",
+  "private": false,
+  "description": "DSH 右侧栏「画布」插件:无限画布 + 直接在图上标注 + 接 GrsAI(gpt-image-2 / nano-banana)按标注改图,结果放在原图旁边对比,画布自动存到工作区",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "canvas",
+    "infinite-canvas",
+    "image-editing",
+    "grsai",
+    "nano-banana",
+    "gpt-image"
+  ],
+  "homepage": "https://github.com/knxi/dsh-grsai-canvas#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knxi/dsh-grsai-canvas.git"
+  },
+  "bugs": {
+    "url": "https://github.com/knxi/dsh-grsai-canvas/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/parts",
+    "lib/update.js",
+    "lib/upscale.js",
+    "tools",
+    "cordis.patch.yml",
+    "deploy",
+    "README.md",
+    "README-FIRST.txt",
+    "画布插件说明.md",
+    "交接文档.md",
+    "Skills模板规范.md",
+    "更新发布说明.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar-right"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*"
+  },
+  "license": "MIT"
+}

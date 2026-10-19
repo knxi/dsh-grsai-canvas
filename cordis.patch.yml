@@ -1,0 +1,8 @@
+# dsh-grsai-canvas 的 profile 补丁层。
+#
+# 一行宿主侧入口:装载 lib/index.js(注册 /grsai-canvas/* 路由)。
+# 客户端半边由 package.json 里的 dsh.client 声明自动接入浏览器模块图,
+# 不需要在这里再写一行。
+- insert:
+    - id: grsai-canvas
+      name: 'dsh-grsai-canvas'

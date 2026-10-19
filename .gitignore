@@ -1,0 +1,22 @@
+# 依赖与构建产物
+node_modules/
+dist/
+*.log
+
+# 本地/临时
+_gh/
+_dl/
+pubtest*/
+.tmp/
+*.tgz
+
+# 系统
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 开发期浏览器自检截图 / UI 对比产物(体积大,不入库)
+browser-check/
+ui-compare/
+_dl/
+_gh/

@@ -1,0 +1,4 @@
+interface:
+  display_name: "图片分层 Skill"
+  short_description: "将图片拆成可编辑图层并输出 PSD、SVG 或 Illustrator 兼容 AI"
+  default_prompt: "使用图片分层 Skill，把图片拆成可编辑的透明图层；用户说 PSD 分层、AI 分层或图片分层时调用。首次运行分别配置 APIMart URL/Key 与 Recraft URL/Key，再按需输出 PSD、逐层 SVG 和 AI 文件。"

@@ -1,0 +1,6 @@
+Package: image-layering
+Created: 2026-09-02
+Source: local image-layering Skill package
+Includes: latest pre-submit small-input normalization and 2K ceiling
+Default tier: 1K
+Config files included: yes (credentials are blank; configure on first use and keep private)

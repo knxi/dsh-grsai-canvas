@@ -1,0 +1,7 @@
+{
+  "base_url": "https://api.apimart.ai",
+  "submit_endpoint": "/v1/images/generations",
+  "task_status_endpoint": "/v1/tasks",
+  "model": "seedream-5-0-pro",
+  "api_key": ""
+}

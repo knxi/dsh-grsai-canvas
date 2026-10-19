@@ -1,0 +1,7 @@
+pillow
+psd-tools
+opencv-python
+numpy
+svglib
+reportlab
+pywin32  # optional: native layered Illustrator .ai export on Windows

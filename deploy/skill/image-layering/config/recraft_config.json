@@ -1,0 +1,10 @@
+{
+  "vectorize_endpoint": "https://external.api.recraft.ai/v1/images/vectorize",
+  "token_env": "RECRAFT_API_TOKEN",
+  "max_edge": 2048,
+  "max_pixels": 4194304,
+  "max_bytes": 5242880,
+  "api_token": "",
+  "min_edge": 256,
+  "max_retries": 3
+}
